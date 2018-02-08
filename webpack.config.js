@@ -17,8 +17,8 @@ const config = {
   entry: resolve('src/index.js'),
   // 输出
   output: {
-    filename: 'bundle.[hash:8].js',
-    path: resolve('dist')
+    path: resolve('dist'),
+    filename: '[name].[hash:6].js'
   },
   // 解析
   resolve: {
@@ -52,13 +52,13 @@ const config = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       }, {
-        test: /\.(gif|jpg|jpeg|png|svg)$/,
+        test: /\.(gif|jpg|jpeg|png|svg|eot|ttf|woff)$/,
         use: [{
           loader: 'url-loader',
           options: {
             // 资源文件小于1024直接转成base64
             limit: 1024,
-            name: '[name].[ext]'
+            name: 'static/[name].[hash:6].[ext]'
           }
         }]
       }
@@ -68,15 +68,17 @@ const config = {
     new webpack.DefinePlugin({
       // webpack编译过程中和自己写的js中调用
       'process.env': {
-        NODE_ENV: isDev ? '"dev"' : '"pro"'
+        NODE_ENV: isDev ? '"development"' : '"production"'
       }
     }),
     // 自动生成一个html文件、引入相关静态资源、bundle.js等功能
     new HTMLWebpackPlugin({
       // 标题
-      title: 'Vue_all',
+      title: 'Vue_family',
       // 模版
-      template: resolve('src/tpl/index.html')
+      template: resolve('src/tpl/index.html'),
+      // 给定的图标路径，可将其添加到输出html中
+      favicon: resolve('src/assets/favicon.ico')
     })
   ]
 }
@@ -128,7 +130,7 @@ if (isDev) {
     vendor: ['vue', 'vue-router', 'vuex', 'axios', 'qs', 'fastclick', 'better-scroll']
   }
   // 生产环境输出的js名称
-  config.output.filename = '[name].[chunkhash:8].js'
+  config.output.filename = '[name].[chunkhash:6].js'
   // 生产环境stylus配置
   config.module.rules.push({
     test: /\.styl$/,
@@ -150,14 +152,11 @@ if (isDev) {
     })
   })
   config.plugins.push(
-    // 单独打包css的文件名，带有8为hash值
-    new ExtractTextWebpackPlugin('styles.[contentHash:8].css'),
+    // 单独打包css的文件名，带有6为hash值
+    new ExtractTextWebpackPlugin('styles.[contentHash:6].css'),
+    // 公共代码分离打包
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    }),
-    // webpack相关的代码单独打包，两个CommonsChunkPlugin位置不能换
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime'
+      names: ['vendor', 'mainifest']
     }),
     // 混淆相关
     new webpack.optimize.UglifyJsPlugin({

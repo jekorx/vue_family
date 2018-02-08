@@ -6,6 +6,7 @@ import store from '@store/index'
 import App from '@/app'
 
 import '@styles/reset'
+import '@styles/fonts'
 
 // 在body最前面定义一个div，用于render app.vue
 const root = document.createElement('div')
