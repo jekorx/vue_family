@@ -3,7 +3,7 @@ import FastClick from 'fastclick'
 
 import router from '@route/router'
 import store from '@store/index'
-import App from '@/app'
+import App from '@views/app'
 
 import '@styles/reset'
 import '@styles/fonts'
