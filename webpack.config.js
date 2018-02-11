@@ -28,7 +28,7 @@ const config = {
     alias: {
       '@': resolve('src'),
       '@api': resolve('src/api'),
-      '@store': resolve('src/store'),
+      '@vuex': resolve('src/vuex'),
       '@route': resolve('src/route'),
       '@assets': resolve('src/assets'),
       '@images': resolve('src/assets/images'),

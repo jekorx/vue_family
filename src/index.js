@@ -2,7 +2,7 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 
 import router from '@route/router'
-import store from '@store/index'
+import store from '@vuex/index'
 import App from '@views/app'
 
 import '@styles/reset'

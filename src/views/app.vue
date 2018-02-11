@@ -16,7 +16,7 @@
 <script>
 import BScroll from 'better-scroll'
 
-import { SET_SCROLL } from '@store/types'
+import { SET_SCROLL } from '@vuex/index'
 
 import Header from '@views/header'
 import Footer from '@views/footer'

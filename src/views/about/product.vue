@@ -17,7 +17,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapActions } = createNamespacedHelpers('product')
-import { COMMIT_PRODUCT } from '@store/types'
+import { COMMIT_PRODUCT } from '@vuex/product/types'
 
 import { axiosPost, axiosDelete } from '@api/api'
 

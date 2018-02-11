@@ -1,10 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { SET_SCROLL } from './types'
-
-import numbers from './modules/numbers'
-import products from './modules/products'
+import numbers from '@vuex/number/index'
+import products from '@vuex/product/index'
 
 // vue安装vuex插件
 Vue.use(Vuex)
@@ -18,6 +16,8 @@ const state = {
 const getters = {
   //scroll: state => state.scroll
 }
+
+export const SET_SCROLL = 'SET_SCROLL'
 
 // mutations，更改 Vuex 的 store 中的状态的唯一方法
 const mutations = {

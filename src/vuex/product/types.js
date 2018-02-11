@@ -1,0 +1,3 @@
+export const SET_PROD_NAME = 'SET_PROD_NAME'
+export const SET_PROD_PRICE = 'SET_PROD_PRICE'
+export const COMMIT_PRODUCT = 'COMMIT_PRODUCT'

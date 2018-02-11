@@ -9,7 +9,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 const { mapMutations, mapActions } = createNamespacedHelpers('number')
-import * as types from '@store/types'
+import * as types from '@vuex/number/types'
 
 export default {
   methods: {

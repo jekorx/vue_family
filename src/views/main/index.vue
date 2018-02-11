@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <button @touchend="getScroll">getScroll</button>
+    <button @click="getScroll">getScroll</button>
     <p>first</p>
     <p>fhdsjkfh</p>
     <p>fhdsjkfh</p>
