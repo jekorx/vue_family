@@ -25,6 +25,10 @@ new Vue({
 }).$mount(root)
 
 // 使用fastclick，解决touch 300ms延迟问题
+//
+// FastClick的实现原理是在检测到touchend事件的时候，
+// 会通过DOM自定义事件立即出发模拟一个click事件，
+//  并把浏览器在300ms之后真正的click事件阻止掉
 document.addEventListener('DOMContentLoaded', () => {
   FastClick.attach(document.body)
 }, false);
