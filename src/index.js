@@ -8,14 +8,7 @@ import App from '@views/app'
 import '@styles/reset'
 import '@styles/fonts'
 
-// 在body最前面定义一个div，用于render app.vue
-const root = document.createElement('div')
-const body = document.body
-if (body.children.length > 0) {
-  body.insertBefore(root, body.children[0])
-} else {
-  body.appendChild(root)
-}
+const root = document.getElementById('root')
 
 // 初始化vue
 new Vue({
