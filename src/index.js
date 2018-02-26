@@ -8,14 +8,12 @@ import App from '@views/app'
 import '@styles/reset'
 import '@styles/fonts'
 
-const root = document.getElementById('root')
-
 // 初始化vue
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount(root)
+}).$mount('#root')
 
 // 使用fastclick，解决touch 300ms延迟问题
 //
