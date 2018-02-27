@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 // 是否是开发模式
 const isDev = process.env.NODE_ENV === 'dev'
@@ -41,16 +42,16 @@ const config = {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          // 生产模式提取样式
+          extractCSS: !isDev
+        }
       }, {
         test: /\.js$/,
         use: 'babel-loader',
         // 排除node_modules目录
         exclude: /node_modules/
-      }, {
-        /* 开发中如果使用css文件，需以下配置 */
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
       }, {
         test: /\.(gif|jpg|jpeg|png|svg|eot|ttf|woff)$/,
         use: [{
@@ -85,6 +86,16 @@ const config = {
 
 // 开发模式和生产模式相关配置
 if (isDev) {
+  // 开发中如果使用css文件，需以下配置
+  config.module.rules.push({
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader', {
+      loader: 'postcss-loader',
+      options: {
+        sourceMap: true
+      }
+    }]
+  })
   // 开发环境stylus配置
   config.module.rules.push({
     test: /\.styl$/,
@@ -131,24 +142,22 @@ if (isDev) {
   }
   // 生产环境输出的js名称
   config.output.filename = '[name].[chunkhash:6].js'
+  // 生产中将css提取
+  config.module.rules.push({
+    test: /\.css$/,
+    // loader处理后依次往上处理，最后打包成css文件
+    use: ExtractTextWebpackPlugin.extract({
+      fallback: 'style-loader',
+      use: ['css-loader', 'postcss-loader']
+    })
+  })
   // 生产环境stylus配置
   config.module.rules.push({
     test: /\.styl$/,
     // loader处理后依次往上处理，最后打包成css文件
     use: ExtractTextWebpackPlugin.extract({
       fallback: 'style-loader',
-      use: [{
-          loader: 'css-loader',
-          options: {
-            // css压缩
-            minimize: true
-          }
-        }, {
-          loader: 'postcss-loader',
-          options: {
-            sourceMap: true
-          }
-        }, 'stylus-loader']
+      use: ['css-loader', 'postcss-loader', 'stylus-loader']
     })
   })
   config.plugins.push(
@@ -158,6 +167,8 @@ if (isDev) {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'mainifest']
     }),
+    // 压缩css（将vue文件提取出来的css无法压缩，通过该插件将最终的.css压缩）
+    new OptimizeCSSPlugin(),
     // 混淆相关
     new webpack.optimize.UglifyJsPlugin({
       // 压缩
