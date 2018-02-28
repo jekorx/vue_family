@@ -13,3 +13,7 @@ babel-plugin-transform-object-rest-spread -> transform-object-rest-spread
 // const page = () => import(/* webpackChunkName: "page" */ 'page.vue')
 
 babel-plugin-syntax-dynamic-import -> syntax-dynamic-import
+
+// vue-router如果使用history模式，生产模式服务器端配置参照
+
+https://router.vuejs.org/en/essentials/history-mode.html

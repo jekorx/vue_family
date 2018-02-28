@@ -10,6 +10,9 @@ const Products = () => import(/* webpackChunkName: "Product" */'@views/about/pro
 Vue.use(VueRouter)
 
 export default new VueRouter({
+  // 路由模式
+  mode: 'history',
+  // 路由规则
   routes: [
     {
       path: '/',

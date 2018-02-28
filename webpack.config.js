@@ -113,8 +113,10 @@ if (isDev) {
   config.devtool = '#cheap-module-eval-source-map'
   // 配置devServer
   config.devServer = {
+    // 当使用HTML5 History API时，任意的404响应都可能需要被替代为index.html
+    historyApiFallback: true,
     // 端口
-    port: 8001,
+    port: 8002,
     // 本机内外网ip可访问
     host: '0.0.0.0',
     overlay: {
