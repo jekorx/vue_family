@@ -1,5 +1,5 @@
 # vue family basic framework
-## 一、技术栈 vue + vuex + vue-router + axios + webpack
+### 一、技术栈 vue + vuex + vue-router + axios + webpack
 ```javascript
 // var obj1 = {a: 1, b: 2}
 // var obj2 = {...obj1, c: 3} // {a: 1, b: 2, c: 3}
@@ -13,7 +13,7 @@
   "syntax-dynamic-import"
 ]
 ```
-## 二、vue-router如果使用history模式，生产模式服务器端配置，可参考https://router.vuejs.org/en/essentials/history-mode.html
+### 二、vue-router如果使用history模式，生产模式服务器端配置，可参考https://router.vuejs.org/en/essentials/history-mode.html
 webpack
 ```javascript
 devServer: {
@@ -60,16 +60,16 @@ http.createServer((req, res) => {
   console.log('Server listening on: http://localhost:%s', httpPort)
 })
 ```
-## 三、按需引入ui组件
+### 三、按需引入ui组件
 以element-ui为例
-#### 按需引入方法（1）
+##### 按需引入方法（1）
 需要babel-plugin-component，并且要在.babelrc的"plugins"中加入
 ```
 [
- "component", {
-   "libraryName": "element-ui",
-   "styleLibraryName": "theme-chalk"
- }
+  "component", {
+    "libraryName": "element-ui",
+    "styleLibraryName": "theme-chalk"
+  }
 ]
 ```
 ```
@@ -83,7 +83,7 @@ Use equal casing. Compare these module identifiers:
 ```javascript
 import { Carousel, CarouselItem } from 'element-ui'
 ```
-#### 按需引入方法（2）
+##### 按需引入方法（2）
 ```javascript
 import Carousel from 'element-ui/packages/carousel/index'
 import 'element-ui/lib/theme-chalk/carousel.css'
