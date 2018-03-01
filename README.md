@@ -91,7 +91,7 @@ import CarouselItem from 'element-ui/packages/carousel-item/index'
 import 'element-ui/lib/theme-chalk/carousel-item.css'
 ```
 ### 四、相关问题
-#### (1)依赖中es5无法转换es5
+#### (1)依赖中es6语法无法转换成es5
 ```
 ERROR in app.7606cf.js from UglifyJs
 Unexpected token: punc ()) [app.7606cf.
