@@ -1,5 +1,5 @@
 # vue family basic framework
-##一、技术栈 vue + vuex + vue-router + axios + webpack
+## 一、技术栈 vue + vuex + vue-router + axios + webpack
 ```javascript
 // var obj1 = {a: 1, b: 2}
 // var obj2 = {...obj1, c: 3} // {a: 1, b: 2, c: 3}
@@ -13,7 +13,14 @@
   "syntax-dynamic-import"
 ]
 ```
-##二、vue-router如果使用history模式，生产模式服务器端配置，可参考https://router.vuejs.org/en/essentials/history-mode.html
+## 二、vue-router如果使用history模式，生产模式服务器端配置，可参考https://router.vuejs.org/en/essentials/history-mode.html
+webpack
+```javascript
+devServer: {
+  // 当使用HTML5 History API时，任意的404响应都可能需要被替代为index.html
+  historyApiFallback: true,
+}
+```
 Apache
 ```
 <IfModule mod_rewrite.c>
@@ -53,11 +60,10 @@ http.createServer((req, res) => {
   console.log('Server listening on: http://localhost:%s', httpPort)
 })
 ```
-##三、按需引入ui组件
+## 三、按需引入ui组件
 以element-ui为例
-按需引入方法（1）
-需要babel-plugin-component
-并且要在.babelrc的"plugins"中加入
+#### 按需引入方法（1）
+需要babel-plugin-component，并且要在.babelrc的"plugins"中加入
 ```
 [
  "component", {
@@ -66,16 +72,18 @@ http.createServer((req, res) => {
  }
 ]
 ```
+```
 可能会报WARNING
 There are multiple modules with names that only differ in casing.
 This can lead to unexpected behavior when compiling on a filesystem with other case-semantic.
 Use equal casing. Compare these module identifiers:
 原因：大小写问题，包括盘符的大小写，默认cmd盘符大写，报WARNING
 建议使用git-bash，但有些情况也会出现WARNING，也可使用方法（2）
+```
 ```javascript
 import { Carousel, CarouselItem } from 'element-ui'
 ```
-按需引入方法（2）
+#### 按需引入方法（2）
 ```javascript
 import Carousel from 'element-ui/packages/carousel/index'
 import 'element-ui/lib/theme-chalk/carousel.css'
