@@ -105,3 +105,9 @@ Unexpected token: punc ()) [app.7606cf.
   //exclude: /node_modules/
 }
 ```
+#### (2)vue-router history模式，二级路由刷新或者直接打开无法访问（服务端已配置）
+如：请求或刷新http://127.0.0.1:8001/category/1，资源会多一级http://127.0.0.1:8001/category/main.2e3bb4.js，解决方法
+```html
+<!-- head标签最顶部加入base 设置根路径 -->
+<base href="/" />
+```
